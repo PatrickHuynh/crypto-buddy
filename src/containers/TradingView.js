@@ -17,7 +17,7 @@ function TradingView(props) {
     const [widgetWidth, setWidgetWidth] = useState(
         (window.innerWidth / viewParams.columns) * 0.99 || 2
     );
-    const [interval, setInterval] = useState(viewParams.intervals || 60);
+    const [interval, setInterval] = useState(viewParams.interval || 60);
 
     const [ethConnected, setEthConnected] = useState(false);
     const [ethAccount, setEthAccount] = useState();
