@@ -4,14 +4,14 @@ import { Route, Switch } from "react-router-dom";
 
 import "./App.css";
 import Home from "./containers/Home";
-import TradeView from "./containers/TradeView";
+import TradingView from "./containers/TradingView";
 
 function App() {
     return (
-        <div className="App bg-dark">
+        <div className="App bg-dark text-white">
             <Switch>
                 <Route path="/" component={Home} exact />
-                <Route path="/tradeview" component={TradeView} />
+                <Route path="/tradingview" component={TradingView} />
             </Switch>
         </div>
     );

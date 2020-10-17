@@ -3,7 +3,7 @@ import queryString from "query-string";
 import TradingViewWidget, { Themes } from "react-tradingview-widget";
 import web3 from "web3";
 
-function TradeView(props) {
+function TradingView(props) {
     const intervals = [1, 5, 60, 1440];
 
     const [viewParams, setViewParams] = useState(() => {
@@ -12,10 +12,10 @@ function TradeView(props) {
         return params;
     });
     const [widgetHeight, setWidgetHeight] = useState(
-        (window.innerHeight / viewParams.rows) * 0.999 || 2
+        (window.innerHeight / viewParams.rows) * 0.99 || 2
     );
     const [widgetWidth, setWidgetWidth] = useState(
-        (window.innerWidth / viewParams.columns) * 0.999 || 2
+        (window.innerWidth / viewParams.columns) * 0.99 || 2
     );
     const [interval, setInterval] = useState(viewParams.intervals || 60);
 
@@ -91,7 +91,7 @@ function TradeView(props) {
                                                 donateEthereum();
                                             }}
                                         >
-                                            Donate ETH
+                                            Donate 0.01 ETH
                                         </button>
                                     </li>
                                 ) : (
@@ -115,7 +115,7 @@ function TradeView(props) {
                 </div>
             </nav>
             <div className="container-fluid m-0 p-0">
-                <div className="row m-0 p-0">
+                <div className="row m-0 p-0 justify-content-center">
                     {viewParams.symbols.map((s) => {
                         return (
                             <div
@@ -140,4 +140,4 @@ function TradeView(props) {
     );
 }
 
-export default TradeView;
+export default TradingView;
