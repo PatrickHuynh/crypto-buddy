@@ -48,7 +48,7 @@ function NavBar(props) {
                 <li class="nav-item">
                     <a
                         class="nav-link"
-                        href="/tradingview/?symbols=US30,EURUSD,BINANCE:BTCUSDT,BINANCE:ETHUSDT&columns=2&rows=2&interval=5"
+                        href="/tradingview/?symbols=US30,EURUSD,BINANCE:BTCUSDT,BINANCE:ETHUSDT&columns=2&rows=2&interval=5&timezone=Atlantic/Reykjavik"
                     >
                         Tradingview
                     </a>
