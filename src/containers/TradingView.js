@@ -189,7 +189,9 @@ function TradingView(props) {
             pathname: "/tradingview",
             search: `?symbols=${params.symbols.join(",")}&columns=${
                 params.columns
-            }&rows=${params.rows}&interval=${params.interval}`,
+            }&rows=${params.rows}&interval=${params.interval}&timezone=${
+                params.timezone
+            }`,
         });
     };
 
