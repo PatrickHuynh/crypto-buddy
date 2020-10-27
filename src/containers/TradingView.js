@@ -7,6 +7,16 @@ import "./TradingView.css";
 
 function SymbolsModal(props) {
     const [symbols, setSymbols] = useState([...props.parentViewState.symbols]);
+    const [newSymbol, setNewSymbol] = useState();
+
+    const handleAddSymbol = () => {
+        if (newSymbol) {
+            let newSymbols = [...symbols];
+            newSymbols.push(newSymbol);
+            setSymbols(newSymbols);
+        }
+        setNewSymbol("");
+    };
 
     return (
         <Modal {...props} size="lg" centered>
@@ -43,7 +53,7 @@ function SymbolsModal(props) {
                                                     1
                                                 );
                                                 newSymbols.splice(
-                                                    Math.max([i - 1, 0]),
+                                                    Math.max(i - 1, 0),
                                                     0,
                                                     moveSymbol
                                                 );
@@ -93,27 +103,62 @@ function SymbolsModal(props) {
                 </table>
             </Modal.Body>
             <Modal.Footer>
-                <button
-                    className="btn btn-sm btn-outline-success"
-                    onClick={() => {
-                        props.handleUpdateViewState({
-                            ...props.parentViewState,
-                            symbols: [...symbols],
-                        });
-                        props.handleHideModal();
-                    }}
-                >
-                    Update View
-                </button>
-                <button
-                    className="btn btn-sm btn-outline-danger"
-                    onClick={() => {
-                        props.handleHideModal();
-                        setSymbols([...props.parentViewState.symbols]);
-                    }}
-                >
-                    Discard Changes
-                </button>
+                <div className="container-fluid w-100">
+                    <div className="row">
+                        <div className="col">
+                            <div className="input-group input-group-sm w-100">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Tradingview Symbol"
+                                    onChange={(e) => {
+                                        setNewSymbol(e.target.value);
+                                    }}
+                                    value={newSymbol}
+                                />
+                                <div className="input-group-append">
+                                    <button
+                                        className="btn btn-outline-secondary"
+                                        onClick={(e) => {
+                                            handleAddSymbol();
+                                        }}
+                                    >
+                                        Add Symbol
+                                    </button>
+                                </div>
+                                <button
+                                    className="btn btn-sm btn-outline-success ml-2"
+                                    onClick={() => {
+                                        props.handleUpdateViewState({
+                                            ...props.parentViewState,
+                                            symbols: [...symbols],
+                                        });
+                                        props.handleHideModal();
+                                    }}
+                                >
+                                    Update View
+                                </button>
+
+                                <button
+                                    className="btn btn-sm btn-outline-danger ml-2"
+                                    style={{ width: "150px" }}
+                                    onClick={() => {
+                                        props.handleHideModal();
+                                        setSymbols([
+                                            ...props.parentViewState.symbols,
+                                        ]);
+                                    }}
+                                >
+                                    {JSON.stringify(
+                                        props.parentViewState.symbols
+                                    ) === JSON.stringify(symbols)
+                                        ? "Close"
+                                        : "Discard Changes"}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </Modal.Footer>
         </Modal>
     );
